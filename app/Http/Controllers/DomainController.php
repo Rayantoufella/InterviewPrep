@@ -32,11 +32,15 @@ class DomainController extends Controller
 
     public function edit(Domain $domain)
     {
+        $this->authorize('update', $domain);
+
         return view('domains.edit', compact('domain'));
     }
 
     public function update(DomainRequest $request, Domain $domain)
     {
+        $this->authorize('update', $domain);
+
         $domain->update([
             'title' => $request->title,
             'color' => $request->color,
@@ -47,6 +51,8 @@ class DomainController extends Controller
 
     public function destroy(Domain $domain)
     {
+        $this->authorize('delete', $domain);
+
         $domain->delete();
 
         return redirect()->route('domains.index');

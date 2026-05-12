@@ -28,11 +28,15 @@ class ConceptController extends Controller
 
     public function edit(Concept $concept)
     {
+        $this->authorize('update', $concept);
+
         return view('concepts.edit', compact('concept'));
     }
 
     public function update(ConceptRequest $request, Concept $concept)
     {
+        $this->authorize('update', $concept);
+
         $concept->update($request->validated());
 
         return redirect()->route('concepts.index');
@@ -40,6 +44,8 @@ class ConceptController extends Controller
 
     public function destroy(Concept $concept)
     {
+        $this->authorize('delete', $concept);
+
         $concept->delete();
 
         return redirect()->route('concepts.index');

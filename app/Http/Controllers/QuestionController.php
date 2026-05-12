@@ -28,11 +28,15 @@ class QuestionController extends Controller
 
     public function edit(Question $question)
     {
+        $this->authorize('update', $question);
+
         return view('questions.edit', compact('question'));
     }
 
     public function update(QuestionRequest $request, Question $question)
     {
+        $this->authorize('update', $question);
+
         $question->update($request->validated());
 
         return redirect()->route('questions.index');
@@ -40,6 +44,8 @@ class QuestionController extends Controller
 
     public function destroy(Question $question)
     {
+        $this->authorize('delete', $question);
+
         $question->delete();
 
         return redirect()->route('questions.index');

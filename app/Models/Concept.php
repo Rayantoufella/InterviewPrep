@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Concept extends Model
 {
-    use HasFactory , softDeletes    ;
+    use HasFactory, SoftDeletes;
     protected $fillable = [
         'domain_id',
         'title',
@@ -27,7 +27,7 @@ class Concept extends Model
 
     public function questions():HasMany
     {
-        return $this->HasMany(question::class);
+        return $this->hasMany(Question::class);
     }
 
 
