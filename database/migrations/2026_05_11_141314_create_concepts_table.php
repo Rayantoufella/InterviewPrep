@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('concepts', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->enum('difficulty', ['junior', 'intermediate', 'senior'])->default('junior');
+            $table->enum('status' , ['a_revoir' , 'en_cours' , 'maitrise'])->default('a_revoir');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
