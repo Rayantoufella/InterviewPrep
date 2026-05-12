@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('title') ;
+            $table->string('color');
+            $table ->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->timestamp('created_at');
             $table->timestamp('updated_at');
         });
     }
